@@ -7,7 +7,11 @@ class DownloadsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      
       backgroundColor: backGroundColor,
+      appbar: PrefferedSize(
+    
+      )
       body: Center(child: Text("Download screen")),
     );
   }
