@@ -14,19 +14,21 @@ class BottomNavigation extends StatelessWidget {
     const NewAndHotScreen(),
     const FastLaughsScreen(),
     const SearchScreen(),
-    const DownloadsScreen(),
+     DownloadsScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backGroundColor,
-      body: ValueListenableBuilder(
-          valueListenable: indexChangeNotifier,
-          builder: (context, int index, child) {
-            return pages[index];
-          }),
-      bottomNavigationBar: BottomNavigationBarWidget(),
+      body: SafeArea(
+        child: ValueListenableBuilder(
+            valueListenable: indexChangeNotifier,
+            builder: (context, int index, child) {
+              return pages[index];
+            }),
+      ),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }
