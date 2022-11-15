@@ -10,7 +10,7 @@ class Section1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        kheight,
+        kHeight,
         Row(
           children: const [
             Icon(

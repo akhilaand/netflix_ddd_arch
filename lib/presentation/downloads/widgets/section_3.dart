@@ -24,7 +24,7 @@ class Section3 extends StatelessWidget {
                 color: white, fontSize: 20, fontWeight: FontWeight.w700),
           ),
         ),
-        kheight,
+        kHeight,
         MaterialButton(
           onPressed: () {},
           height: 40,
