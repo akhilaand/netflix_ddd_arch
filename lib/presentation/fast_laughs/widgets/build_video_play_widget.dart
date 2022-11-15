@@ -31,7 +31,7 @@ class BuildVideoPlayPageViewWidget extends StatelessWidget {
                     kHeight,
                     BuildVideoPlayActionButtons(icon: Icons.emoji_emotions,title: "Lol",),
                     BuildVideoPlayActionButtons(icon: Icons.add,title: "My List",),
-                    BuildVideoPlayActionButtons(icon: Icons.share,title: "Share",),
+                    BuildVideoPlayActionButtons(icon: Icons.share,title: " Share",),
                     BuildVideoPlayActionButtons(icon: Icons.play_arrow,title: "Play",),
 
                   ],
