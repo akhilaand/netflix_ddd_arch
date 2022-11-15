@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_ddd_arch/core/colors.dart';
 import 'package:netflix_ddd_arch/core/constants.dart';
-import 'package:netflix_ddd_arch/presentation/search_screen/widgets/search_text_title.dart';
+
+import '../../../widgets/build_text_title.dart';
 
 const searchImage="https://www.themoviedb.org/t/p/w500_and_h282_face/84XPpjGvxNyExjSuLQe0SzioErt.jpg";
 
@@ -14,7 +15,7 @@ class SearchIdleStateScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SearchTextTitle(title: "Top Searches",),
+        const TextTitle(title: "Top Searches",),
         kHeight,
         Expanded(
           child: ListView.separated(

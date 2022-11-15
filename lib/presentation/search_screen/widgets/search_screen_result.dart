@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_ddd_arch/core/constants.dart';
-import 'package:netflix_ddd_arch/presentation/search_screen/widgets/search_text_title.dart';
 
 import '../../../core/colors.dart';
+import '../../../widgets/build_text_title.dart';
 const String image=    "https://www.themoviedb.org/t/p/w440_and_h660_face/ccBe5BVeibdBEQU7l6P6BubajWV.jpg";
 class SearchResultScreen extends StatelessWidget {
   const SearchResultScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class SearchResultScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        const SearchTextTitle(title: "Search Results"),
+        const TextTitle(title: "Search Results"),
         kHeight,
         Expanded(
           child: GridView.builder(
