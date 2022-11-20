@@ -65,6 +65,7 @@ class BuildHomeScreenCustomAppbar extends StatelessWidget {
                 ],
               ),
             ),
+
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
