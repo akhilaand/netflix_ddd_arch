@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_ddd_arch/core/colors.dart';
 import 'package:netflix_ddd_arch/core/constants.dart';
+
+import '../../../widgets/build_icon_text_column.dart';
 class BuildVideoPlayPageViewWidget extends StatelessWidget {
   final int index;
   const BuildVideoPlayPageViewWidget({Key? key,required this.index}) : super(key: key);
@@ -29,10 +31,10 @@ class BuildVideoPlayPageViewWidget extends StatelessWidget {
                       ),
                     ),
                     kHeight,
-                    BuildVideoPlayActionButtons(icon: Icons.emoji_emotions,title: "Lol",),
-                    BuildVideoPlayActionButtons(icon: Icons.add,title: " My List",),
-                    BuildVideoPlayActionButtons(icon: Icons.share,title: "Share",),
-                    BuildVideoPlayActionButtons(icon: Icons.play_arrow,title: "Play",),
+                    BuildIconWithTextColumn(icon: Icons.emoji_emotions,title: "Lol",),
+                    BuildIconWithTextColumn(icon: Icons.add,title: " My List",),
+                    BuildIconWithTextColumn(icon: Icons.share,title: "Share",),
+                    BuildIconWithTextColumn(icon: Icons.play_arrow,title: "Play",),
 
                   ],
                 )
@@ -45,23 +47,4 @@ class BuildVideoPlayPageViewWidget extends StatelessWidget {
   }
 }
 
-class BuildVideoPlayActionButtons extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  const BuildVideoPlayActionButtons({
-    required this.title,
-    required this.icon,
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        IconButton(onPressed: (){}, icon:  Icon(icon,color: white,size: 35,)),
-        Text(title,style: TextStyle(fontSize: 15),)
-
-      ],
-    );
-  }
-}
