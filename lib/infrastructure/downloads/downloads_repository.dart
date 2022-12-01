@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix_ddd_arch/domain/downloads/modals/downloads.dart';
@@ -16,16 +18,22 @@ class DownloadsRepository implements DownloadsRepo {
     try {
       final Response response = await Dio(BaseOptions()).get(downloadsAPI);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final List<Downloads> downloadsList = [];
-        for (final raw in response.data) {
-          downloadsList.add(Downloads.fromJson(raw as Map<String, dynamic>));
-        }
-        print(downloadsList);
+        ///we cant find any api which provide poster paths, so thats why we created
+        ///tempmap like below
+        final tempMap = [
+          {"poster_path": response.data['backdrop_path']},
+          {"poster_path": response.data['backdrop_path']},
+          {"poster_path": response.data['backdrop_path']},
+        ];
+        final downloadsList = (tempMap).map((e) {
+          return Downloads.fromJson(e);
+        }).toList();
         return Right(downloadsList);
       } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
+      print(e);
       return const Left(MainFailure.clientFailure());
     }
   }

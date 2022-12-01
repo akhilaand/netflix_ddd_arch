@@ -5,6 +5,8 @@ import 'package:netflix_ddd_arch/core/colors.dart';
 import 'package:netflix_ddd_arch/domain/core/di/injectable.dart';
 import 'package:netflix_ddd_arch/presentation/bottomNavigation/bottom_navigation.dart';
 
+import 'application/search/search/search_bloc.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
@@ -19,7 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (ctx)=>getIt<DownloadsBloc>())
+        BlocProvider(create: (ctx)=>getIt<DownloadsBloc>()),
+        BlocProvider(create: (ctx)=>getIt<SearchBloc>())
       ],
       child: MaterialApp(
           title: 'Flutter Demo',

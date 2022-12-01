@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_ddd_arch/application/downloads/downloads_bloc.dart';
+import 'package:netflix_ddd_arch/core/strings.dart';
 
 import '../../../core/colors.dart';
 import '../../../core/constants.dart';
@@ -15,6 +18,14 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("calling again-----------------");
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
+
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   BlocProvider.of<DownloadsBloc>(context)
+    //     .add(const DownloadsEvent.getDownloadsImage());
+    // });
     Size size = MediaQuery.of(context).size;
 
     return Column(
@@ -32,34 +43,42 @@ class Section2 extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         kHeight,
-        SizedBox(
-          height: size.width,
-          width: size.width,
-          child: Stack(alignment: Alignment.center, children: [
-            CircleAvatar(
-                radius: 120, backgroundColor: Colors.white24.withOpacity(0.28)),
-            DownloadsImageWidget(
-              image: imageList[0],
-              height: size.width * 0.4,
-              margin: const EdgeInsets.only(left: 120, bottom: 20),
-              size: size,
-              angle: 20,
-            ),
-            DownloadsImageWidget(
-              image: imageList[1],
-              height: size.width * 0.4,
-              margin: const EdgeInsets.only(right: 120, bottom: 20),
-              size: size,
-              angle: -20,
-            ),
-            DownloadsImageWidget(
-              image: imageList[2],
-              height: size.width * 0.47,
-              margin: const EdgeInsets.only(right: 0),
-              size: size,
-            ),
-          ]),
-        ),
+        BlocBuilder<DownloadsBloc, DownloadsState>(builder: (context, state) {
+          return state.downloads.isEmpty
+              ? const CircularProgressIndicator()
+              : SizedBox(
+                  height: size.width,
+                  width: size.width,
+                  child: Stack(alignment: Alignment.center, children: [
+                    CircleAvatar(
+                        radius: 120,
+                        backgroundColor: Colors.white24.withOpacity(0.28)),
+                    DownloadsImageWidget(
+                      image:
+                          "$imageAppendUrl/${state.downloads[0].posterPath}",
+                      height: size.width * 0.4,
+                      margin: const EdgeInsets.only(left: 120, bottom: 20),
+                      size: size,
+                      angle: 20,
+                    ),
+                    DownloadsImageWidget(
+                      image:
+                          "$imageAppendUrl/${state.downloads[0].posterPath}",
+                      height: size.width * 0.4,
+                      margin: const EdgeInsets.only(right: 120, bottom: 20),
+                      size: size,
+                      angle: -20,
+                    ),
+                    DownloadsImageWidget(
+                      image:
+                          "$imageAppendUrl/${state.downloads[0].posterPath}",
+                      height: size.width * 0.47,
+                      margin: const EdgeInsets.only(right: 0),
+                      size: size,
+                    ),
+                  ]),
+                );
+        }),
       ],
     );
   }
