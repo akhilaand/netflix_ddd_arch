@@ -56,6 +56,7 @@ class BuildMovieTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Row(
+      
       children: [
         Container(
           width: size.width * 0.35,
