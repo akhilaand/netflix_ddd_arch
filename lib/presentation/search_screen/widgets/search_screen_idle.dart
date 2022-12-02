@@ -35,7 +35,6 @@ class SearchIdleStateScreen extends StatelessWidget {
                         itemBuilder: ((context, index) =>
                              BuildMovieTiles(movieImage: state.trendingResultsData[index].backdropPath,
                              movieName: state.trendingResultsData[index].name,
-                             
                              )),
                         separatorBuilder: ((context, index) => kHeight20),
                         itemCount: 10),
