@@ -5,8 +5,9 @@ class SearchState with _$SearchState {
 
   const factory SearchState({
     required List<TrendingResults> trendingResultsData,
-    required List<TrendingResults> searchResultsData,
-    required bool isLoading,
+    required List<SEarchResult> searchResultsData,
+     required bool isLoading,
+     required bool isSearchedData,
     required bool isError,
   }) = _SearchState;
   
@@ -14,7 +15,8 @@ class SearchState with _$SearchState {
 
    factory SearchState.initial()=>const SearchState(trendingResultsData: [],
    searchResultsData: [], 
-   isLoading: false, 
+   isSearchedData:false,
+   isLoading: true, 
    isError: false);
 
 }

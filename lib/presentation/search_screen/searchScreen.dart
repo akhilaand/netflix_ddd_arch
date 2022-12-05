@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_ddd_arch/application/search/search/search_bloc.dart';
 import 'package:netflix_ddd_arch/core/colors.dart';
 import 'package:netflix_ddd_arch/core/constants.dart';
 import 'package:netflix_ddd_arch/presentation/search_screen/widgets/search_screen_result.dart';
@@ -11,35 +13,46 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backGroundColor,
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            CupertinoSearchTextField(
-              placeholderStyle: const TextStyle(color: grey600),
-              backgroundColor: Colors.grey.shade800,
-              prefixIcon: const Icon(
-                CupertinoIcons.search,
-                color: grey,
-              ),
-              suffixIcon: const Icon(
-                CupertinoIcons.xmark_circle_fill,
-                color: white,
-              ),
-              style: const TextStyle(color: white),
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: backGroundColor,
+          body: SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                CupertinoSearchTextField(
+                  placeholderStyle: const TextStyle(color: grey600),
+                  backgroundColor: Colors.grey.shade800,
+                  prefixIcon: const Icon(
+                    CupertinoIcons.search,
+                    color: grey,
+                  ),
+                  suffixIcon: const Icon(
+                    CupertinoIcons.xmark_circle_fill,
+                    color: white,
+                  ),
+                  style: const TextStyle(color: white),
+                  onChanged: (value) {
+                    if(value.isNotEmpty){
+                    BlocProvider.of<SearchBloc>(context)
+                                      .add(SearchMovie(movieQuery: value));
+                    }
+                    
+                  },
+                ),
+                kHeight,
+                state.isSearchedData? Expanded(child: SearchResultScreen(
+                  searchResultsData:state.searchResultsData
+                ))
+                 :const Expanded(child: SearchIdleStateScreen()),
+               
+              ],
             ),
-            kHeight,
-            const Expanded(child: SearchIdleStateScreen()),
-            // const Expanded(child: SearchResultScreen()),
-
-          
-          
-          ],
-        ),
-      )),
+          )),
+        );
+      },
     );
   }
 }

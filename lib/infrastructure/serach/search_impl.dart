@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:netflix_ddd_arch/domain/search/modals/serach_result_modal.dart';
 import 'package:netflix_ddd_arch/domain/search/modals/trending_modal.dart';
 
 import 'package:netflix_ddd_arch/domain/core/failures/main_failure.dart';
@@ -28,5 +29,25 @@ class SearchImplement implements SearchService {
       log("error throw from search implement ${e.toString()}");
       return const Left(MainFailure.clientFailure());
     }
+  }
+
+  @override
+  Future<Either<MainFailure, SearchResultModal>> getSearchedMovieResults(
+      {required String movieName}) async {
+    final params = {"query": movieName};
+    try {
+      var response =
+          await Dio(BaseOptions()).get(searchMovieAPI, queryParameters: params);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final result = SearchResultModal.fromJson(response.data);
+        print("result from search printed below");
+        print(response.data);
+        return Right(result);
+      }
+    } catch (e) {
+      log("error throw from getSearchedMovieResults $e");
+      return const Left(MainFailure.clientFailure());
+    }
+    throw UnimplementedError();
   }
 }

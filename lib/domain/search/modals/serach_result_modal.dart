@@ -18,13 +18,13 @@ class SearchResultModal {
     });
 
     int page;
-    List<Result> results;
+    List<SEarchResult> results;
     int totalPages;
     int totalResults;
 
     factory SearchResultModal.fromJson(Map<String, dynamic> json) => SearchResultModal(
         page: json["page"],
-        results: json["results"] == null ? [] : List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        results: json["results"] == null ? [] : List<SEarchResult>.from(json["results"].map((x) => SEarchResult.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
     );
@@ -37,8 +37,8 @@ class SearchResultModal {
     };
 }
 
-class Result {
-    Result({
+class SEarchResult {
+    SEarchResult({
    
         required this.backdropPath,
         required this.originalTitle,
@@ -52,8 +52,8 @@ class Result {
     String title;
    
 
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
-        backdropPath: json["backdrop_path"] ?? "",
+    factory SEarchResult.fromJson(Map<String, dynamic> json) => SEarchResult(
+        backdropPath: json["logo_path"] ?? "nFcR2kd7vl5O3TITQs6x39BNo6Y.png",
         originalTitle: json["original_title"] ?? "",
         title: json["title"] ?? "",
         );

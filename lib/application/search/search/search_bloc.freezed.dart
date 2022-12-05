@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchState {
   List<TrendingResults> get trendingResultsData =>
       throw _privateConstructorUsedError;
-  List<TrendingResults> get searchResultsData =>
+  List<SEarchResult> get searchResultsData =>
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isSearchedData => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,8 +37,9 @@ abstract class $SearchStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<TrendingResults> trendingResultsData,
-      List<TrendingResults> searchResultsData,
+      List<SEarchResult> searchResultsData,
       bool isLoading,
+      bool isSearchedData,
       bool isError});
 }
 
@@ -57,6 +59,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? trendingResultsData = null,
     Object? searchResultsData = null,
     Object? isLoading = null,
+    Object? isSearchedData = null,
     Object? isError = null,
   }) {
     return _then(_value.copyWith(
@@ -67,10 +70,14 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       searchResultsData: null == searchResultsData
           ? _value.searchResultsData
           : searchResultsData // ignore: cast_nullable_to_non_nullable
-              as List<TrendingResults>,
+              as List<SEarchResult>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSearchedData: null == isSearchedData
+          ? _value.isSearchedData
+          : isSearchedData // ignore: cast_nullable_to_non_nullable
               as bool,
       isError: null == isError
           ? _value.isError
@@ -90,8 +97,9 @@ abstract class _$$_SearchStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<TrendingResults> trendingResultsData,
-      List<TrendingResults> searchResultsData,
+      List<SEarchResult> searchResultsData,
       bool isLoading,
+      bool isSearchedData,
       bool isError});
 }
 
@@ -109,6 +117,7 @@ class __$$_SearchStateCopyWithImpl<$Res>
     Object? trendingResultsData = null,
     Object? searchResultsData = null,
     Object? isLoading = null,
+    Object? isSearchedData = null,
     Object? isError = null,
   }) {
     return _then(_$_SearchState(
@@ -119,10 +128,14 @@ class __$$_SearchStateCopyWithImpl<$Res>
       searchResultsData: null == searchResultsData
           ? _value._searchResultsData
           : searchResultsData // ignore: cast_nullable_to_non_nullable
-              as List<TrendingResults>,
+              as List<SEarchResult>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSearchedData: null == isSearchedData
+          ? _value.isSearchedData
+          : isSearchedData // ignore: cast_nullable_to_non_nullable
               as bool,
       isError: null == isError
           ? _value.isError
@@ -137,8 +150,9 @@ class __$$_SearchStateCopyWithImpl<$Res>
 class _$_SearchState implements _SearchState {
   const _$_SearchState(
       {required final List<TrendingResults> trendingResultsData,
-      required final List<TrendingResults> searchResultsData,
+      required final List<SEarchResult> searchResultsData,
       required this.isLoading,
+      required this.isSearchedData,
       required this.isError})
       : _trendingResultsData = trendingResultsData,
         _searchResultsData = searchResultsData;
@@ -150,9 +164,9 @@ class _$_SearchState implements _SearchState {
     return EqualUnmodifiableListView(_trendingResultsData);
   }
 
-  final List<TrendingResults> _searchResultsData;
+  final List<SEarchResult> _searchResultsData;
   @override
-  List<TrendingResults> get searchResultsData {
+  List<SEarchResult> get searchResultsData {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_searchResultsData);
   }
@@ -160,11 +174,13 @@ class _$_SearchState implements _SearchState {
   @override
   final bool isLoading;
   @override
+  final bool isSearchedData;
+  @override
   final bool isError;
 
   @override
   String toString() {
-    return 'SearchState(trendingResultsData: $trendingResultsData, searchResultsData: $searchResultsData, isLoading: $isLoading, isError: $isError)';
+    return 'SearchState(trendingResultsData: $trendingResultsData, searchResultsData: $searchResultsData, isLoading: $isLoading, isSearchedData: $isSearchedData, isError: $isError)';
   }
 
   @override
@@ -178,6 +194,8 @@ class _$_SearchState implements _SearchState {
                 .equals(other._searchResultsData, _searchResultsData) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isSearchedData, isSearchedData) ||
+                other.isSearchedData == isSearchedData) &&
             (identical(other.isError, isError) || other.isError == isError));
   }
 
@@ -187,6 +205,7 @@ class _$_SearchState implements _SearchState {
       const DeepCollectionEquality().hash(_trendingResultsData),
       const DeepCollectionEquality().hash(_searchResultsData),
       isLoading,
+      isSearchedData,
       isError);
 
   @JsonKey(ignore: true)
@@ -199,16 +218,19 @@ class _$_SearchState implements _SearchState {
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
       {required final List<TrendingResults> trendingResultsData,
-      required final List<TrendingResults> searchResultsData,
+      required final List<SEarchResult> searchResultsData,
       required final bool isLoading,
+      required final bool isSearchedData,
       required final bool isError}) = _$_SearchState;
 
   @override
   List<TrendingResults> get trendingResultsData;
   @override
-  List<TrendingResults> get searchResultsData;
+  List<SEarchResult> get searchResultsData;
   @override
   bool get isLoading;
+  @override
+  bool get isSearchedData;
   @override
   bool get isError;
   @override
@@ -240,20 +262,20 @@ mixin _$SearchEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,25 +300,25 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
 }
 
 /// @nodoc
-abstract class _$$_InitializeCopyWith<$Res> {
-  factory _$$_InitializeCopyWith(
-          _$_Initialize value, $Res Function(_$_Initialize) then) =
-      __$$_InitializeCopyWithImpl<$Res>;
+abstract class _$$InitializeCopyWith<$Res> {
+  factory _$$InitializeCopyWith(
+          _$Initialize value, $Res Function(_$Initialize) then) =
+      __$$InitializeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitializeCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$_Initialize>
-    implements _$$_InitializeCopyWith<$Res> {
-  __$$_InitializeCopyWithImpl(
-      _$_Initialize _value, $Res Function(_$_Initialize) _then)
+class __$$InitializeCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$Initialize>
+    implements _$$InitializeCopyWith<$Res> {
+  __$$InitializeCopyWithImpl(
+      _$Initialize _value, $Res Function(_$Initialize) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initialize implements _Initialize {
-  const _$_Initialize();
+class _$Initialize implements Initialize {
+  const _$Initialize();
 
   @override
   String toString() {
@@ -306,7 +328,7 @@ class _$_Initialize implements _Initialize {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initialize);
+        (other.runtimeType == runtimeType && other is _$Initialize);
   }
 
   @override
@@ -346,8 +368,8 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return initialize(this);
   }
@@ -355,8 +377,8 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) {
     return initialize?.call(this);
   }
@@ -364,8 +386,8 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -375,25 +397,25 @@ class _$_Initialize implements _Initialize {
   }
 }
 
-abstract class _Initialize implements SearchEvent {
-  const factory _Initialize() = _$_Initialize;
+abstract class Initialize implements SearchEvent {
+  const factory Initialize() = _$Initialize;
 }
 
 /// @nodoc
-abstract class _$$_SearchMovieCopyWith<$Res> {
-  factory _$$_SearchMovieCopyWith(
-          _$_SearchMovie value, $Res Function(_$_SearchMovie) then) =
-      __$$_SearchMovieCopyWithImpl<$Res>;
+abstract class _$$SearchMovieCopyWith<$Res> {
+  factory _$$SearchMovieCopyWith(
+          _$SearchMovie value, $Res Function(_$SearchMovie) then) =
+      __$$SearchMovieCopyWithImpl<$Res>;
   @useResult
   $Res call({String movieQuery});
 }
 
 /// @nodoc
-class __$$_SearchMovieCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$_SearchMovie>
-    implements _$$_SearchMovieCopyWith<$Res> {
-  __$$_SearchMovieCopyWithImpl(
-      _$_SearchMovie _value, $Res Function(_$_SearchMovie) _then)
+class __$$SearchMovieCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchMovie>
+    implements _$$SearchMovieCopyWith<$Res> {
+  __$$SearchMovieCopyWithImpl(
+      _$SearchMovie _value, $Res Function(_$SearchMovie) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -401,7 +423,7 @@ class __$$_SearchMovieCopyWithImpl<$Res>
   $Res call({
     Object? movieQuery = null,
   }) {
-    return _then(_$_SearchMovie(
+    return _then(_$SearchMovie(
       movieQuery: null == movieQuery
           ? _value.movieQuery
           : movieQuery // ignore: cast_nullable_to_non_nullable
@@ -412,8 +434,8 @@ class __$$_SearchMovieCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchMovie implements _SearchMovie {
-  const _$_SearchMovie({required this.movieQuery});
+class _$SearchMovie implements SearchMovie {
+  const _$SearchMovie({required this.movieQuery});
 
   @override
   final String movieQuery;
@@ -427,7 +449,7 @@ class _$_SearchMovie implements _SearchMovie {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchMovie &&
+            other is _$SearchMovie &&
             (identical(other.movieQuery, movieQuery) ||
                 other.movieQuery == movieQuery));
   }
@@ -438,8 +460,8 @@ class _$_SearchMovie implements _SearchMovie {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchMovieCopyWith<_$_SearchMovie> get copyWith =>
-      __$$_SearchMovieCopyWithImpl<_$_SearchMovie>(this, _$identity);
+  _$$SearchMovieCopyWith<_$SearchMovie> get copyWith =>
+      __$$SearchMovieCopyWithImpl<_$SearchMovie>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -475,8 +497,8 @@ class _$_SearchMovie implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(Initialize value) initialize,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return searchMovie(this);
   }
@@ -484,8 +506,8 @@ class _$_SearchMovie implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_SearchMovie value)? searchMovie,
+    TResult? Function(Initialize value)? initialize,
+    TResult? Function(SearchMovie value)? searchMovie,
   }) {
     return searchMovie?.call(this);
   }
@@ -493,8 +515,8 @@ class _$_SearchMovie implements _SearchMovie {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(Initialize value)? initialize,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (searchMovie != null) {
@@ -504,12 +526,11 @@ class _$_SearchMovie implements _SearchMovie {
   }
 }
 
-abstract class _SearchMovie implements SearchEvent {
-  const factory _SearchMovie({required final String movieQuery}) =
-      _$_SearchMovie;
+abstract class SearchMovie implements SearchEvent {
+  const factory SearchMovie({required final String movieQuery}) = _$SearchMovie;
 
   String get movieQuery;
   @JsonKey(ignore: true)
-  _$$_SearchMovieCopyWith<_$_SearchMovie> get copyWith =>
+  _$$SearchMovieCopyWith<_$SearchMovie> get copyWith =>
       throw _privateConstructorUsedError;
 }
