@@ -13,7 +13,7 @@ class BottomNavigation extends StatelessWidget {
     const HomeScreen(),
     const NewAndHotScreen(),
     const FastLaughsScreen(),
-    const SearchScreen(),
+     SearchScreen(),
      DownloadsScreen(),
   ];
 

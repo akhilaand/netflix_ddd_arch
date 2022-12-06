@@ -62,7 +62,7 @@ class BuildMovieTiles extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
-                      "https://www.themoviedb.org/t/p/w500_and_h282_face/$movieImage"),
+                      movieImage),
                   fit: BoxFit.fill),
               color: red,
               borderRadius: const BorderRadius.all(Radius.circular(10))),

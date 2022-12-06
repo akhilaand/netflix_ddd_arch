@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +11,8 @@ import 'package:netflix_ddd_arch/presentation/search_screen/widgets/search_scree
 import 'widgets/search_screen_idle.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  Timer? _debounce;
+  SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +38,21 @@ class SearchScreen extends StatelessWidget {
                   ),
                   style: const TextStyle(color: white),
                   onChanged: (value) {
-                    if(value.isNotEmpty){
-                    BlocProvider.of<SearchBloc>(context)
-                                      .add(SearchMovie(movieQuery: value));
+                    if (value.isNotEmpty) {
+                      if (_debounce?.isActive??false) _debounce!.cancel();
+                      _debounce = Timer(const Duration(milliseconds: 1000), () {
+                        BlocProvider.of<SearchBloc>(context)
+                            .add(SearchMovie(movieQuery: value));
+                      });
                     }
-                    
                   },
                 ),
                 kHeight,
-                state.isSearchedData? Expanded(child: SearchResultScreen(
-                  searchResultsData:state.searchResultsData
-                ))
-                 :const Expanded(child: SearchIdleStateScreen()),
-               
+                state.searchResultsData.isNotEmpty
+                    ? Expanded(
+                        child: SearchResultScreen(
+                            searchResultsData: state.searchResultsData))
+                    : const Expanded(child: SearchIdleStateScreen()),
               ],
             ),
           )),

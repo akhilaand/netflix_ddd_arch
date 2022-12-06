@@ -75,17 +75,17 @@ class TrendingResults {
   factory TrendingResults.fromJson(Map<String, dynamic> json) =>
       TrendingResults(
         adult: json["adult"] ?? false,
-        backdropPath: json["backdrop_path"] ?? "",
+        backdropPath: "https://www.themoviedb.org/t/p/w500_and_h282_face/${json["backdrop_path"]}" ?? "",
         id: json["id"] ?? 0,
-        originalTitle: json["original_title"] ?? "",
+        originalTitle: json["original_title"] ?? "no title",
         overview: json["overview"] ?? "",
         posterPath: json["poster_path"] ?? "",
         popularity: json["popularity"] ?? 0.0,
         video: json["video"] ?? false,
         voteAverage: json["vote_average"] ?? 0.0,
         voteCount: json["vote_count"] ?? 0,
-        name: json["name"] ?? "",
-        originalName: json["original_name"] ?? "",
+        name: json["name"] ?? json["original_title"], 
+        originalName: json["original_name"] ?? json["original_title"],
       );
 
   Map<String, dynamic> toJson() => {
